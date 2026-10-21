@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Brisbane &amp; Ipswich Overnight Nanny / Night-Nurse Shortlists — Pre-Vetted, Half the Agency Fee</title>
+<title>Brisbane, Ipswich &amp; Logan Overnight Nanny / Night-Nurse Shortlists — Pre-Vetted, Up to Half the Agency Fee</title>
 <meta name="description" content="Skip the $2,000–$4,400 agency fee. Get a pre-vetted shortlist of overnight nannies and night nurses in Brisbane, Ipswich and Logan for a flat A$800–$1,200 success fee — paid only on placement.">
 <style>
 body{font-family:system-ui,sans-serif;max-width:720px;margin:0 auto;padding:16px;line-height:1.5;color:#1a1a1a}
@@ -23,7 +23,7 @@ small{color:#555}
 
 <h1>Pre-vetted overnight nanny &amp; night-nurse shortlists — Brisbane · Ipswich · Logan</h1>
 
-<p><strong>You pay only on placement: a flat A$800–$1,200 success fee.</strong> Traditional placement agencies charge A$2,000–A$4,400 up front. We do the vetting, background checks and ranking for you, and show you the ranked candidates.</p>
+<p><strong>You pay only on placement: a flat A$800–$1,200 success fee.</strong> Typical agency fees in Australia run A$2,000–A$4,400. We do the vetting, background checks and ranking for you, and show you the ranked candidates.</p>
 <ul>
 <li><strong>Pre-vetted.</strong> Blue Card / WWCC, first-aid, references and family ratings all checked before you see anyone.</li>
 <li><strong>Fast.</strong> First shortlist delivered within 72 hours of your request.</li>
@@ -72,14 +72,13 @@ small{color:#555}
 <option>Experienced overnight nanny</option>
 <option>Nanny (studying towards nursing or teaching), happy for overnight care</option>
 </select></label>
-<label>What checks do you hold? (tick all you have)
+<span style="display:block;font-weight:600;margin:8px 0">What checks do you hold? (tick all you have)
 <span style="display:block;font-weight:400;margin-top:4px">
-<input type="checkbox" name="checks" value="Qld Blue Card"> Qld Blue Card
-<input type="checkbox" name="checks" value="NSW WWCC"> NSW WWCC
-<input type="checkbox" name="checks" value="First aid"> First-aid certificate
-<input type="checkbox" name="checks" value="AHPRA"> AHPRA registration (nurses)
-<input type="checkbox" name="checks" value="References"> Job references
-</span></label>
+<label style="display:block;font-weight:400"><input type="checkbox" name="checks" value="Qld Blue Card" style="display:inline;width:auto"> Qld Blue Card</label>
+<label style="display:block;font-weight:400"><input type="checkbox" name="checks" value="First aid" style="display:inline;width:auto"> First-aid certificate</label>
+<label style="display:block;font-weight:400"><input type="checkbox" name="checks" value="AHPRA" style="display:inline;width:auto"> AHPRA registration (nurses)</label>
+<label style="display:block;font-weight:400"><input type="checkbox" name="checks" value="References" style="display:inline;width:auto"> Job references</label>
+</span></span>
 <label>Rates &amp; availability<textarea name="rates" rows="2" placeholder="e.g. $35/hr evenings, Mon–Thu nights"></textarea></label>
 <button type="submit">Register free</button>
 <p id="carer-status" role="status" aria-live="polite"></p>
@@ -88,19 +87,19 @@ small{color:#555}
 <h2>How it works</h2>
 <ol>
 <li>Send your request (family side) with suburb, care type and start date.</li>
-<li>We confirm candidates for your area in 72 hours — identity, Blue Card / WWCC number, first-aid, references and prior-family ratings — and email you 3–5 ranked choices.</li>
-<li>Interview by phone or a group chat, whichever you prefer, and choose directly.</li>
+<li>We confirm candidates for your area in 72 hours — identity, Qld Blue Card / working-with-children number, first-aid, AHPRA registration (for the night-nurse option), references and prior-family ratings — and email you 3–5 ranked choices.</li>
+<li>Interview by phone or video call, whichever you prefer, and choose directly.</li>
 <li>If you place one of them, our success fee applies: A$800 (overnight nanny) or A$1,200 (night nurse). No fee if no one from the shortlist places.</li>
 </ol>
 
-<p><small>Last audited 2026-10-21. Check-cost figures per official state registers (Qld Blue Card $108.30, Qld WWCC up to $112 as at 2026-10-21); agency-fee comparison from AU placement agencies' public price pages viewed 2026-10-21. Confirm current prices on the official register before relying on them.</small></p>
+<p><small>Last audited 2026-10-21. Qld Blue Card (working-with-children check) paid-worker fee $108.30 per the official Qld register as at 2026-10-21 — confirm the current fee on the official register before relying on it. Agency-fee comparison from AU placement agencies' public price pages viewed 2026-10-21.</small></p>
 
 <script>
 (function(){
   var src=new URLSearchParams(location.search).get("src")||"direct";
   ["parent-source","carer-source"].forEach(function(id){var el=document.getElementById(id);if(el){el.value=src;}});
   var RELAY="https://formsubmit.co/ajax/bradshermesagent@gmail.com";
-  function safeObj(fd){var o={};fd.forEach(function(v,k){if(k!=="_honey"){o[k]=v;}});return o;}
+  function safeObj(fd){var o={};fd.forEach(function(v,k){if(k!=="_honey"&&k!=="checks"){o[k]=v;}});return o;}
   function wire(formId,statusId){
     var f=document.getElementById(formId), s=document.getElementById(statusId);
     var btn=f.querySelector('button[type="submit"]');
@@ -109,18 +108,20 @@ small{color:#555}
       var fd=new FormData(f);
       if((fd.get("_honey")||"").trim().length>0){return;}
       if(!RELAY||RELAY.indexOf("formsubmit.co/ajax/")<0){
-        alert("This form is not yet connected to its inbox — please email hello@bradshermesagent.com directly.");
+        alert("This form is not yet connected to its inbox — please email bradshermesagent@gmail.com directly.");
         console.error(formId+": capture endpoint not configured ("+RELAY+")");
         return;
       }
       btn.disabled=true; s.textContent="Sending…"; s.className="";
       var payload=safeObj(fd); payload.form=formId; delete payload._honey;
+      var checks=f.querySelectorAll('input[name="checks"]:checked');
+      if(checks.length){payload.checks=Array.prototype.map.call(checks,function(el){return el.value;});}
       fetch(RELAY,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload)})
         .then(function(r){ if(!r.ok){throw new Error("HTTP "+r.status);} return r.json().catch(function(){return {};}); })
-        .then(function(){ s.className="status-ok"; s.textContent="Thanks — request received. Watch your inbox for our confirmation."; f.reset(); })
+        .then(function(){ s.className="status-ok"; s.textContent="Thanks — request received. Watch your inbox for our confirmation."; })
         .catch(function(e){
           s.className="status-err"; btn.disabled=false;
-          s.textContent="Sorry — that didn't go through. Please try again shortly, or email hello@bradshermesagent.com.";
+          s.textContent="Sorry — that didn't go through. Please try again shortly, or email bradshermesagent@gmail.com.";
           console.error(formId+" submit failed:",e);
         });
     });
@@ -129,5 +130,6 @@ small{color:#555}
   wire("carer-form","carer-status");
 })();
 </script>
+<noscript><p>JS is off — email your details to <a href="mailto:bradshermesagent@gmail.com">bradshermesagent@gmail.com</a> (care type, suburb, start date) and we'll take it from there.</p></noscript>
 </body>
 </html>
